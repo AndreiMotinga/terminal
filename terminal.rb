@@ -18,12 +18,12 @@ class Terminal
 
   def item_total(item)
     name, count = item
-    return count * pricing_info[name][:price] unless discount?(name)
+    regular_price = pricing_info[name][:price]
+    return count * regular_price unless discount?(name)
 
-    discount_count = pricing_info[name][:discount][:count]
-    discount_price = pricing_info[name][:discount][:price]
-    with_discount = (count / discount_count) * discount_price
-    remainder = (count % discount_count) * pricing_info[name][:price]
+    discount = pricing_info[name][:discount]
+    with_discount = (count / discount[:count]) * discount[:price]
+    remainder = (count % discount[:count]) * regular_price
     with_discount + remainder
   end
 
