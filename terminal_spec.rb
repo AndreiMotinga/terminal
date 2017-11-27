@@ -1,35 +1,10 @@
 require_relative "terminal"
+require "json"
 
 describe Terminal do
   before do
-    pricing_info = {
-      A: {
-        price: 2.00,
-        "discounts": [
-          {
-            count: 4,
-            price: 7.00
-          }
-        ]
-      },
-      B: {
-        price: 12.00,
-        discounts: []
-      },
-      C: {
-        price: 1.25,
-        discounts: [
-          {
-            count: 6,
-            price: 6.00
-          }
-        ]
-      },
-      D: {
-        price: 0.15,
-        discounts: []
-      }
-    }
+    file = File.read("pricing.json")
+    pricing_info = JSON.parse(file, symbolize_names: true)
     @terminal = Terminal.new(pricing_info)
   end
   describe "#scan" do
