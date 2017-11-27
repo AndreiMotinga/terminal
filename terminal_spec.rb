@@ -1,9 +1,36 @@
-require_relative ".terminal"
+require_relative "terminal"
 
 describe Terminal do
   describe "#scan" do
     before do
-      pricing_info = {  }
+      pricing_info = {
+        "A": {
+          price: 2.00,
+          "disounts": [
+            {
+              count: 4,
+              price: 7.00
+            }
+          ]
+        },
+        "B": {
+          price: 12.00,
+          disounts: []
+        },
+        "C": {
+          price: 1.25,
+          disounts: [
+            {
+              count: 6,
+              price: 6.00
+            }
+          ]
+        },
+        "D": {
+          price: 0.15,
+          discounts: []
+        }
+      }
       @terminal = Terminal.new(pricing_info)
     end
 
