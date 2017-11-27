@@ -5,7 +5,7 @@ describe Terminal do
     pricing_info = {
       A: {
         price: 2.00,
-        "disounts": [
+        "discounts": [
           {
             count: 4,
             price: 7.00
@@ -14,11 +14,11 @@ describe Terminal do
       },
       B: {
         price: 12.00,
-        disounts: []
+        discounts: []
       },
       C: {
         price: 1.25,
-        disounts: [
+        discounts: [
           {
             count: 6,
             price: 6.00
