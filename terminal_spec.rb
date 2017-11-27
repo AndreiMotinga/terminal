@@ -7,10 +7,18 @@ describe Terminal do
     pricing_info = JSON.parse(file, symbolize_names: true)
     @terminal = Terminal.new(pricing_info)
   end
+
   describe "#scan" do
     it "adds item to @items" do
       @terminal.scan("A")
       expect(@terminal.items).to eq({ A: 1 })
+    end
+
+    it "adds item to @items" do
+      @terminal.scan("A")
+      @terminal.scan("A")
+      @terminal.scan("B")
+      expect(@terminal.items).to eq({ A: 2, B: 1 })
     end
   end
 
