@@ -1,4 +1,22 @@
-### The Shopping Cart
+### Setup
+
+```
+git clone git@github.com:AndreiMotinga/terminal.git
+cd terminal
+bundle install
+```
+`rspec` - to run tests
+
+### Task notes:
+
+1. I don't display $ as it's more of a presentation logic and I would normally have it somewhere in the view or other view helpers. It's fairly easy to add it to `#total`, in case it's necessary.
+2. Normally I prefer to have [tests without mystery guests](https://robots.thoughtbot.com/mystery-guest), but in this particular case setting up terminal and pricing variable before test runs seem appropriate because of simplicity.
+3. Discounts could be an array if we wanted the system to be more flexible. However, it wasn't part of the task, and I didn't want "overcomplecate" things without the need.
+In case we had more logic, at some point it would make sense to extract Item into its own class and possibly handle item total price there, leaving Terminal (ShoppingCart) to only care about combinations of items and total price.
+4.  Testing with help of `@items` isn't necessary, arguably, a better design would completely hide them from the outside world. It's up for discussion and doesn't take much to refactor.
+5. Depending on the styleguide we could document methods. In my experience most of the projects don't do it.
+
+### Task: The Shopping Cart
 
 Consider a store where each item has a price per unit, and may also have a volume price. For example, apples may be $1.00 each or 4 for $3.00.
 
@@ -32,11 +50,3 @@ Here are the minimal inputs you should use for your test cases. These test cases
 - Scan these items in this order: CCCCCCC; Verify the total price is $7.25.
 - Scan these items in this order: ABCD; Verify the total price is $15.40.
 
-### NOTES:
-
-1. I don't display $ as it's more of a presentation logic and I would normally have it somewhere in the view or other view helpers. It's fairly easy to add it to `#total`, in case it's necessary.
-2. Normally I prefer to have [tests without mystery guests](https://robots.thoughtbot.com/mystery-guest), but in this particular case setting up terminal and pricing variable before test runs seem appropriate because of simplicity.
-3. Discounts could be an array if we wanted the system to be more flexible. However, it wasn't part of the task, and I didn't want "overcomplecate" things without the need.
-In case we had more logic, at some point it would make sense to extract Item into its own class and possibly handle item total price there, leaving Terminal (ShoppingCart) to only care about combinations of items and total price.
-4.  Testing with help of `@items` isn't necessary, arguably, a better design would completely hide them from the outside world. It's up for discussion and doesn't take much to refactor.
-5. Depending on the styleguide we could document methods. In my experience most of the projects don't do it.
