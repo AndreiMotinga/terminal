@@ -58,5 +58,12 @@ describe Terminal do
       "ABCD".chars.each { |char| @terminal.scan(char) }
       expect(@terminal.total).to eq 15.40
     end
+
+    context "with discounted price" do
+      it "uses new price after discount" do
+        12.times { @terminal.scan("F") }
+        expect(@terminal.total).to eq 10.8
+      end
+    end
   end
 end
