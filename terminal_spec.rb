@@ -61,6 +61,16 @@ describe Terminal do
 
     context "with discounted price" do
       it "uses new price after discount" do
+        3.times { @terminal.scan("F") }
+        expect(@terminal.total).to eq 3.00
+      end
+
+      it "uses new price after discount" do
+        10.times { @terminal.scan("F") }
+        expect(@terminal.total).to eq 9.00
+      end
+
+      it "uses new price after discount" do
         12.times { @terminal.scan("F") }
         expect(@terminal.total).to eq 10.8
       end
