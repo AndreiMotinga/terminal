@@ -1,34 +1,45 @@
 class Item
 
   attr_reader :pricing_info, :name, :count
-  def initialize(pricing_info, name, count)
+  def initialize(pricing_info, item)
     @pricing_info = pricing_info
-    @name = name
-    @count = count
+    @name = item[0]
+    @count = item[1]
   end
 
   def total
-    regular_price = pricing_info[name][:price]
-    return count * pricing_info[name][:discounted_price] if apply_discounted?(name, count)
-
-    discount = pricing_info[name][:discount]
-
-    if discount && discount[:count]
-      with_discount = (count / discount[:count]) * discount[:price]
-      remainder = (count % discount[:count]) * regular_price
-      with_discount + remainder
-    else
-      count * regular_price
-    end
+    return count * discounted_price if use_discounted_price?
+    return with_batch_discount if apply_batch_discount?
+    count * base_price
   end
 
-  def discount?(item_name)
-    pricing_info[item_name][:discount] || pricing_info[item_name][:discounted_price]
+  private
+
+  def with_batch_discount
+    with_discount = (count / discount[:count]) * discount[:price]
+    remainder = (count % discount[:count]) * base_price
+    with_discount + remainder
   end
 
-  def apply_discounted?(name, count)
-    return unless pricing_info[name][:discounted_price]
+  def use_discounted_price?
+    return unless discounted_price
     return if count < pricing_info[name][:discounted_count]
     true
+  end
+
+  def discounted_price
+    pricing_info[name][:discounted_price]
+  end
+
+  def apply_batch_discount?
+    !discount.nil?
+  end
+
+  def base_price
+    pricing_info[name][:price]
+  end
+
+  def discount
+    pricing_info[name][:discount]
   end
 end
