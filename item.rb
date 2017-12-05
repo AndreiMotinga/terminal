@@ -16,8 +16,8 @@ class Item
   private
 
   def with_batch_discount
-    with_discount = (count / discount[:count]) * discount[:price]
-    remainder = (count % discount[:count]) * base_price
+    with_discount = (count / batch_discount[:count]) * batch_discount[:price]
+    remainder = (count % batch_discount[:count]) * base_price
     with_discount + remainder
   end
 
@@ -32,14 +32,14 @@ class Item
   end
 
   def apply_batch_discount?
-    !discount.nil?
+    !batch_discount.nil?
   end
 
   def base_price
     pricing_info[name][:price]
   end
 
-  def discount
-    pricing_info[name][:discount]
+  def batch_discount
+    pricing_info[name][:batch_discount]
   end
 end

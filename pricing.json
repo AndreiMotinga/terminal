@@ -1,7 +1,7 @@
 {
   "A": {
     "price": 2.00,
-    "discount": {
+    "batch_discount": {
       "count": 4,
       "price": 7.00
     }
@@ -11,7 +11,7 @@
   },
   "C": {
     "price": 1.25,
-    "discount": {
+    "batch_discount": {
       "count": 6,
       "price": 6.00
     }
