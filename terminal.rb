@@ -13,7 +13,7 @@ class Terminal
   end
 
   def total
-    items.map { |i| Item.new(pricing_info, i).total }
+    items.map { |i| Item.new(pricing_info, i[0], i[1]).total }
          .reduce(:+)
   end
 end

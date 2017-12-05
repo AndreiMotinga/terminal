@@ -1,13 +1,13 @@
 class Item
 
-  attr_reader :pricing_info, :item
-  def initialize(pricing_info, item)
+  attr_reader :pricing_info, :name, :count
+  def initialize(pricing_info, name, count)
     @pricing_info = pricing_info
-    @item = item
+    @name = name
+    @count = count
   end
 
   def total
-    name, count = item
     regular_price = pricing_info[name][:price]
     return count * pricing_info[name][:discounted_price] if apply_discounted?(name, count)
 
